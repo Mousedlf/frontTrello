@@ -1,10 +1,52 @@
+import {Globals} from "./Common/globals.ts";
+import {useEffect, useState} from "react";
+
 export function Navbar() {
+
+    const [state, setState] = useState(false)
+
+    function readLocalStorage() {
+        if (Globals.isLogged) {
+            setState(true)
+        }
+    }
+
+    useEffect(() => {
+        return readLocalStorage
+    }, []);
+
+
+    function logout() {
+        localStorage.removeItem("bearerToken");
+        window.location.reload();
+    }
+
     return (
         <>
-            <div className="d-flex bg-light">
-                <a href="/page" className="btn btn-primary">Page</a>
-
-            </div>
+            <nav className="navbar navbar-expand-lg mb-5">
+                <div className="container-lg d-flex align-items-center justify-content-between bg-light">
+                    <a className="nav-link" id="logoNavBarre" href="/">Home</a>
+                    <button className="navbar-toggler" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
+                            aria-label="Toggle navigation">
+                        <span className="navbar-toggler-icon"></span>
+                    </button>
+                    <div className="collapse navbar-collapse justify-content-end text-light" id="navbarNav">
+                        <ul className="navbar-nav">
+                            {state ?
+                                <li>
+                                    <a className="nav-link" href="/logout" onClick={logout}>logout</a>
+                                </li> :
+                                <>
+                                    <li>
+                                        <a className="nav-link" href="/login">Login</a>
+                                    </li>
+                                </>
+                            }
+                        </ul>
+                    </div>
+                </div>
+            </nav>
         </>
     );
 }
