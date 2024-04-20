@@ -43,7 +43,7 @@ export function Navbar() {
                                 <>
                                     <li>
                                         <a className="nav-link" href="/login">Login</a>
-                                        <a className="nav-link" href="/logout" onClick={logout}>logout</a>
+                                        {/*<a className="nav-link" href="/logout" onClick={logout}>logout</a>*/}
                                     </li>
                                 </>
                             }

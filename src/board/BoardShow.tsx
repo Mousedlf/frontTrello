@@ -52,6 +52,8 @@ export function BoardShow() {
                     {board.lists.map((list: List) => (
                         <div key={list.id} className="card col-3 me-1">
 
+                            <button onClick={()=> navigate("/list/edit/"+list.id)}>Edit</button>
+
 
                             <div className="pb-2">
                                 <h3>{list.name}</h3>

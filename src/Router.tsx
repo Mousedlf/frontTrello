@@ -5,6 +5,7 @@ import {WorkspaceIndex} from "./workspace/WorkspaceIndex.tsx";
 import {BoardIndex} from "./board/BoardIndex.tsx";
 import {BoardShow} from "./board/BoardShow.tsx";
 import {ListNew} from "./list/ListNew.tsx";
+import {ListEdit} from "./list/ListEdit.tsx";
 
 export const Router = ()=>{
     return (
@@ -38,6 +39,9 @@ export const Router = ()=>{
                 <Route
                     path='/list/create/:id'
                     element={<ListNew/>}/>
+                <Route
+                    path='/list/edit/:id'
+                    element={<ListEdit/>}/>
 {/* CARD ------------------------------------------------ */}
 
             </Routes>
