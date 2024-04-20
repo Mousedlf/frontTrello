@@ -2,6 +2,7 @@ import {useState} from "react";
 import axios from 'axios';
 import {useNavigate} from "react-router-dom";
 import {Globals} from "./Common/globals.ts";
+import {BoardIndex} from "./board/BoardIndex.tsx";
 
 export function UserManager() {
 
@@ -14,22 +15,24 @@ export function UserManager() {
         return uri.includes("/register");
     }
 
-    function isLoggged() {
+    function isLogged() {
         return !!localStorage.getItem("bearerToken");
     }
 
     function register() {
         const user = {username,password};
-        axios.post(Globals.baseurl+"register",user)
+        axios.post(Globals.baseUrl+"register",user)
             .then((response)=>{
                 console.log(response.data["message"])
             })
         return navigate("/login")
     }
 
+
+
     async function login() {
         const user  = {username,password};
-        await axios.post(Globals.baseurl+"token", user)
+        await axios.post(Globals.baseUrl+"token", user)
             .then((response)=>{
                 console.log(response.data)
                 localStorage.setItem("bearerToken",response.data["access"])
@@ -40,22 +43,19 @@ export function UserManager() {
             })
     }
 
-    function logout() {
-        localStorage.removeItem("bearerToken");
-        window.location.reload();
-    }
-
 
     return (
         <>
             <div className="container">
                 <div className="d-flex flex-column gap-3 align-items-center">
-                    {isLoggged() ?
+                    {isLogged() ?
                         <div>
-                            <button onClick={logout} className="btn btn-primary">Logout</button>
+
+                            <BoardIndex />
                         </div> :
 
                         <div className="d-flex flex-column gap-3  w-100">
+
                             {checkUri() ?
                                 <h1>Register</h1> :
                                 <h1>Login</h1>

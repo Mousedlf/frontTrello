@@ -1,7 +1,7 @@
 export class Globals{
     public static token = localStorage.getItem("bearerToken")
-    public static baseurl = "https://trello.thibautstachnick.com/api/"
+    public static baseUrl = "https://trello.thibautstachnick.com/api/" //https://trelloapi.dlfcaroline.online/api/
 
-    public static isLogged :boolean = localStorage.getItem("bearerToken") !== null
+    public static isLoggedIn :boolean = localStorage.getItem("bearerToken") !== null
 
 }
